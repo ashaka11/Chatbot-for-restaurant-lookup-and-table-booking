@@ -1,0 +1,338 @@
+version: "2.0"
+ 
+stories:
+##########   LOGIN $ SIGN IN   ##############
+- story: sign up(register) form
+  steps:
+  - intent: greet
+  - action: utter_ask_firstuse
+  - intent: affirm_first_chat
+  - action: userdetails_form
+  - active_loop: userdetails_form
+  - slot_was_set:
+    - requested_slot: number
+  - slot_was_set:
+    - number: "1234567890"
+  - slot_was_set:
+    - requested_slot: uname
+  - slot_was_set:
+    - uname: "Krish"
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_submit
+  - action: utter_greet
+  - checkpoint: signup_form_done
+#-----------------------------
+- story: sign in form
+  steps:
+  - intent: greet
+  - action: utter_ask_firstuse
+  - intent: deny_first_chat
+  - action: usernumber_form
+  - active_loop: usernumber_form
+  - slot_was_set:
+    - requested_slot: number
+  - slot_was_set:
+    - number: "1234567890"
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_submitnumber
+  - action: utter_greet
+  - checkpoint: signin_form_done
+
+###########   INQUIRY   ###############
+- story: inquire short login
+  steps:
+  - checkpoint: signup_form_done
+  - intent: inquire
+  - action: utter_ask_restroname_inquire
+  - intent: restroname
+    entities:
+    - rname: "Bayleaf"
+  - slot_was_set:
+    - rname: "Bayleaf"
+  - action: action_restrodetails
+  - action: utter_ask_tablebook
+  - intent: deny
+  - action: action_restart
+#--------------------------------------
+- story: inquire short signin
+  steps:
+  - checkpoint: signin_form_done
+  - intent: inquire
+  - action: utter_ask_restroname_inquire
+  - intent: restroname
+    entities:
+    - rname: "Bayleaf"
+  - slot_was_set:
+    - rname: "Bayleaf"
+  - action: action_restrodetails
+  - action: utter_ask_tablebook
+  - intent: deny
+  - action: action_restart
+#-------------------------------------
+- story: inquire long tb login
+  steps:
+  - checkpoint: signup_form_done
+  - intent: inquire
+  - action: utter_ask_restroname_inquire
+  - intent: restroname
+    entities:
+    - rname: "Bayleaf"
+  - slot_was_set:
+    - rname: "Bayleaf"
+  - action: action_restrodetails
+  - action: utter_ask_tablebook
+  - intent: affirm
+  - action: booktable_form
+  - active_loop: booktable_form
+  - slot_was_set:
+    - requested_slot: rname
+  - slot_was_set:
+    - rname: "Bayleaf"
+  - slot_was_set:
+    - requested_slot: btdate
+  - slot_was_set:
+    - btdate: "2021-02-21"
+  - slot_was_set:
+    - requested_slot: bttime
+  - slot_was_set:
+    - bttime: "A"
+  - slot_was_set:
+    - requested_slot: noofpeople
+  - slot_was_set:
+    - noofpeople: "4"
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_submit_btform
+  - action: action_restart
+#-------------------------------------
+- story: inquire long tb signin
+  steps:
+  - checkpoint: signin_form_done
+  - intent: inquire
+  - action: utter_ask_restroname_inquire
+  - intent: restroname
+    entities:
+    - rname: "Bayleaf"
+  - slot_was_set:
+    - rname: "Bayleaf"
+  - action: action_restrodetails
+  - action: utter_ask_tablebook
+  - intent: affirm
+  - action: booktable_form
+  - active_loop: booktable_form
+  - slot_was_set:
+    - requested_slot: rname
+  - slot_was_set:
+    - rname: "Bayleaf"
+  - slot_was_set:
+    - requested_slot: btdate
+  - slot_was_set:
+    - btdate: "2021-02-21"
+  - slot_was_set:
+    - requested_slot: bttime
+  - slot_was_set:
+    - bttime: "A"
+  - slot_was_set:
+    - requested_slot: noofpeople
+  - slot_was_set:
+    - noofpeople: "4"
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_submit_btform
+  - action: action_restart
+
+###########   EXPLORE   ###############
+- story: explore short login
+  steps:
+  - checkpoint: signup_form_done
+  - intent: explore
+  - action: utter_no_service
+  - action: action_restart
+#------------------------------------
+- story: explore short signin
+  steps:
+  - checkpoint: signin_form_done
+  - intent: explore
+  - action: utter_no_service
+  - action: action_restart
+
+############### BOOK A TABLE ####################
+- story: booktable login
+  steps:
+  - checkpoint: signup_form_done
+  - intent: booktable
+  - action: booktable_form
+  - active_loop: booktable_form
+  - slot_was_set:
+    - requested_slot: rname
+  - slot_was_set:
+    - rname: "Bayleaf"
+  - slot_was_set:
+    - requested_slot: btdate
+  - slot_was_set:
+    - btdate: "2021-02-21"
+  - slot_was_set:
+    - requested_slot: bttime
+  - slot_was_set:
+    - bttime: "A"
+  - slot_was_set:
+    - requested_slot: noofpeople
+  - slot_was_set:
+    - noofpeople: "4"
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_submit_btform
+  # - action: utter_ack_bt
+  - action: action_restart
+#----------------------------
+- story: booktable signin
+  steps:
+  - checkpoint: signin_form_done
+  - intent: booktable
+  - action: booktable_form
+  - active_loop: booktable_form
+  - slot_was_set:
+    - requested_slot: rname
+  - slot_was_set:
+    - rname: "Bayleaf"
+  - slot_was_set:
+    - requested_slot: btdate
+  - slot_was_set:
+    - btdate: "2021-02-21"
+  - slot_was_set:
+    - requested_slot: bttime
+  - slot_was_set:
+    - bttime: "A"
+  - slot_was_set:
+    - requested_slot: noofpeople
+  - slot_was_set:
+    - noofpeople: "4"
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_submit_btform
+  # - action: utter_ack_bt
+  - action: action_restart
+
+###########   Cancel Booking   ###############
+- story: cancel booking short login
+  steps:
+  - checkpoint: signup_form_done
+  - intent: cancelbooking
+  - action: utter_nobookings
+  - action: action_restart
+#------------------------------------
+- story: cancel booking short signin
+  steps:
+  - checkpoint: signin_form_done
+  - intent: cancelbooking
+  - action: action_show_bookings
+  - action: bid_form
+  - active_loop: bid_form
+  - slot_was_set:
+    - requested_slot: bid
+  - slot_was_set:
+    - bid: "11"
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_submit_bidform
+
+#- story: inquire path tb short
+  # steps:
+  # - intent: greet
+  # - action: utter_greet
+  # - intent: inquire
+  # - action: utter_ask_restroname
+  # - intent: restroname
+  #   entities:
+  #   - rname: "Sankalp"
+  # - slot_was_set: 
+  #     - rname: "Sankalp"
+  # - action: action_restrodetails
+  # - action: utter_ask_tablebook
+  # - intent: deny
+  # - action: utter_tablebook_deny
+  # - action: utter_greet_second
+
+##  without form
+# - story: first signin inquire short
+#   steps:
+#   - intent: greet
+#   - action: utter_ask_firstuse
+#   - intent: affirm_first_chat
+#   - action: utter_ask_number
+#   - intent: saynumber
+#     entities:
+#     - number: "9876543210"
+#   - slot_was_set: 
+#       - number: "9876543210"
+#   - action: utter_ask_uname
+#   - intent: sayuname
+#     entities:
+#     - uname: "Shiva"
+#   - slot_was_set: 
+#       - uname: "Shiva"
+#   - action: action_update_data
+
+ # - action: utter_greet_with_name
+
+# - story: login using form
+#   steps:
+#   - intent: greet
+#   - action: utter_ask_firstuse
+#   - intent: affirm_first_chat
+#   - action: userdetails_form 
+#   - active_loop: userdetails_form  
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null 
+#   - action: action_submit
+#   - action: utter_greet
+#   - intent: inquire
+#   - action: utter_ask_restroname
+#   - intent: restroname
+#     entities:
+#     - rname: "Bayleaf"
+#   - slot_was_set: 
+#       - rname: "Bayleaf"
+#   - action: action_restrodetails
+#   - action: utter_ask_tablebook
+#   - intent: deny
+#   - action: utter_tablebook_deny
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+# - story: login inquire short
+#   steps:
+#   - intent: greet
+#   - action: utter_ask_firstuse
+#   - intent: deny_first_chat
+#   - action: utter_ask_number
+#   - intent: saynumber
+#     entities:
+#     - number: "9876543210"
+#   - slot_was_set: 
+#       - number: "9876543210"
+#   - action: action_check_number
+#   - action: utter_greet
+#   - intent: inquire
+#   - action: utter_ask_restroname
+#   - intent: restroname
+#     entities:
+#     - rname: "Sankalp"
+#   - slot_was_set: 
+#       - rname: "Sankalp"
+#   - action: action_restrodetails
+#   - action: utter_ask_tablebook
+#   - intent: deny
+#   - action: utter_tablebook_deny
+#   - intent: goodbye
+#   - action: utter_goodbye

@@ -1,0 +1,188 @@
+version: "2.0"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm_first_chat
+  examples: |
+    - we are chatting for the first time
+    - yes we are chatting for the first time
+  
+- intent: deny_first_chat
+  examples: |
+    - we are not chatting for the first time
+    - we have chatted before
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    
+- intent: deny
+  examples: |
+    - no
+    - not really
+    - do not wish
+    - never
+  
+- intent: inquire
+  examples: |
+    - i want to inquire about a restaurant
+    - i wish to inquire
+    - can you reply to my inquiry
+    - inquire
+    - inquiry
+    - i want to make an inquiry
+    - please answer my inquiries
+    - please answer my inquiries about a restaurant
+    - kindly solve my inquiries
+  
+# - intent: saynumber
+#   examples: |
+#     - my contact number is [9876543210]{"entity": "number", "value": "9999999999"}
+#     - this is my contact number [9012345678](number)
+#     - here is my contact number [9123456780](number)
+#     - [9123456780](number)
+#     - [1234567890](number)
+
+- intent: saybid
+  examples: |
+    - i want to cancel booking for [11]{"entity": "bid", "value": "11"}
+    - cancel booking for [18](bid)
+    - cancel my booking for [11](bid)
+    - please cancel my booking for [18](bid)
+    - cancel it for booking id [11](bid)
+    - can you cancel my booking for id [18](bid)
+    
+- intent: sayuname
+  examples: |
+    - my name is [Shiva](uname)
+    - i am [Krishna](uname)
+    - people call me [Ram](uname)
+    - you can call me [Durga](uname)
+    - [Durga](uname)
+    - [Durga](uname) here
+    - my name is [Krish](uname)
+
+- intent: restroname
+  examples: |
+    - i want to know about [Sankalp](rname)
+    - can you tell me more about [Choice](rname)
+    - tell me about [Hyatt](rname)
+    - please give me details of [Patang](rname)
+    - can you give me details of [Vishala](rname)
+    - i wish to inquire about [Bayleaf](rname)
+    - [Honest](rname)
+    - tell me about [Bayleaf](rname)
+
+- intent: restroname_bt
+  examples: |
+    - i want to book a table at [Sankalp](rname)
+    - can you book me a table at [Choice](rname)
+    - at [Hyatt](rname)
+    - please book a table at [Patang](rname)
+    - can you help me book a table at [Vishala](rname)
+    - i wish to book a table at [Bayleaf](rname)
+    - [Honest](rname)
+    - [Bayleaf](rname) restaurant
+
+# - intent: saynoofpeople
+#   examples: |
+#     - we are [3](noofpeople) people
+#     - we are [4](noofpeople) people
+#     - [2](noofpeople) people
+#     - [5](noofpeople) people
+#     - [7](noofpeople)
+#     - [6](noofpeople)
+
+- intent: btdate
+  examples: |
+    - [2021-02-21](btdate)
+    - [2021-02-27](btdate)
+    - [2021-08-12](btdate)
+
+# - intent: bttime1
+#   examples: |
+#     - [19:30:00-20:00:00](bttime)
+# - intent: bttime2
+#   examples: |
+#     - [20:00:00-20:30:00](bttime)
+
+# - intent: bttime3
+#   examples: |
+#     - [20:30:00-21:00:00](bttime)
+
+# - intent: bttime4
+#   examples: |
+#     - [21:00:00-21:30:00](bttime)
+
+# - intent: bttime5
+#   examples: |
+#     - [21:30:00-22:00:00](bttime)
+
+# - intent: bttime6
+#   examples: |
+#     - [22:00:00-22:30:00](bttime)
+
+# - intent: bttime7
+#   examples: |
+#     - [22:30:00-23:00:00](bttime)
+
+- intent: explore
+  examples: |
+    - i wish to explore
+    - help me explore
+
+- intent: booktable
+  examples: |
+    - i wish to book a table
+    - can you book me a table
+
+- intent: cancelbooking
+  examples: |
+    - i wish to cancel a booking
+    - help me in cancelling my booking
+
+- synonym: '9999999999'
+  examples: |
+    - 9876543210
+    - 9898989898
+    - 7777777777
+    - 7777777890
+    - 9123456789
+    - 9223456799
+    - 9223456799
+    - 9114567890
+    - 9123456777
+    - 9912367890
+    - 7112367890

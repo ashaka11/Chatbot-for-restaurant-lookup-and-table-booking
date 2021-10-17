@@ -1,0 +1,222 @@
+version: '2.0'
+
+intents:
+- sayuname:
+    use_entities:
+    - uname
+- restroname:
+    use_entities:
+    - rname
+- saynumber:
+    use_entities:
+    - number
+- inquire
+- affirm_first_chat
+- greet
+- goodbye
+- affirm
+- deny
+- explore
+- booktable
+- cancelbooking
+- deny_first_chat
+- saynoofpeople
+- saybid
+# - bttime1
+# - bttime2
+# - bttime3
+# - bttime4
+# - bttime5
+# - bttime6
+# - bttime7
+#----------------- ENTITIES -----------------
+entities:
+- number
+- rname
+- uname
+- noofpeople
+- btdate
+- bttime
+- bid
+- zerobooking
+
+#----------------- SLOTS -----------------
+slots:
+  rname:
+    type: text
+    influence_conversation: true
+  number:
+    type: text
+    influence_conversation: true
+  uname:
+    type: text
+    influence_conversation: true
+  noofpeople:
+    type: text
+    influence_conversation: true
+  btdate:
+    type: text
+    influence_conversation: true
+  bttime:
+    type: text
+    influence_conversation: true  
+  bid:
+    type: text
+    influence_conversation: true 
+  zerobooking:
+    type: text
+    influence_conversation: true
+#----------------- RESPONSES -----------------
+responses:
+  utter_ask_firstuse:
+  - text: Are we chatting for the first time ?
+    buttons:
+    - title: Yes
+      payload: /affirm_first_chat
+    - title: No
+      payload: /deny_first_chat
+
+  utter_ask_number:
+  - text: Please tell me your contact number
+  
+  utter_ask_uname:
+  - text: Kindly tell me your name
+
+  utter_ask_rname:
+  - text: At which restaurant do you wish to book a table ?
+  
+  utter_ask_btdate:
+  - text: "Enter a date within an interval of 7 days from today\nExample:2021-03-13"
+  
+  # utter_ask_bttime:
+  # - text: "At which time-slot?\n7:30-8:00\n8:00-8:30\n8:30-9:00\n9:00-9:30\n9:30-10:00\n10:00-10:30\n10:30-11:00\n11:00-11:30"
+
+  utter_ask_bttime:
+  - text: At which time slot ?
+    buttons:
+    - title: 7:30 pm-8:00 pm
+      payload: A
+    - title: 8:00 pm-8:30 pm
+      payload: B
+    - title: 8:30 pm-9:00 pm
+      payload: C
+    - title: 9:00 pm-9:30 pm
+      payload: D
+    - title: 9:30 pm-10:00 pm
+      payload: E
+    - title: 10:00 pm-10:30 pm
+      payload: F
+    - title: 10:30 pm-11:00 pm
+      payload: G
+    - title: 11:00 pm-11:30 pm
+      payload: H
+
+  utter_ask_noofpeople:
+  - text: You wish to book a table for how many people?
+  
+  # utter_ask_bid:
+  # - text: Enter booking id to cancel a booking
+
+  utter_goodbye:
+  - text: Bye
+  
+  utter_ask_restroname_inquire:
+  - text: Which restaurant you want to inquire about?
+  
+  utter_restroname:
+  - text: Give me a second while I fetch details of {rname}
+  
+  utter_greet:
+  - text: How may I help you ?
+    buttons:
+    - title: Inquire about a restaurant
+      payload: /inquire
+    - title: Explore different restaurants
+      payload: /explore
+    - title: Book a table
+      payload: /booktable
+    - title: Cancel a booking
+      payload: /cancelbooking
+  
+  utter_ask_tablebook:
+  - text: Do you wish to book a table?
+ 
+  utter_tablebook_deny:
+  - text: You can come to me anytime in case you change your mind.
+
+  utter_ask_restroname_bt:
+  - text: At which restaurant you wish to book a table ?
+
+  utter_no_service:
+  - text: We are currently working on that service
+
+  utter_nobookings:
+  - text: You have no bookings
+
+  utter_booking_cancelled:
+  - text: Your booking has been cancelled
+
+  # utter_ack_bt:
+  # - text: I have booked a table for you at {rname} restaurant for {noofpeople} people on {btdate} at {bttime} 
+
+#----------------- ACTIONS -----------------
+actions:
+- action_check_number
+- action_restrodetails
+- action_submit
+- action_submitnumber
+- action_update_data
+- action_submit_btform
+- action_show_bookings
+- action_submit_bidform
+- utter_ask_firstuse
+- utter_ask_tablebook
+- utter_goodbye
+- utter_greet
+- utter_tablebook_deny
+- validate_userdetails_form
+- validate_usernumber_form
+- validate_booktable_form
+- validate_bid_form
+
+forms:
+  userdetails_form:
+    number:
+    - type: from_text
+      # entity: number
+    uname:
+    - type: from_entity
+      entity: uname
+
+  usernumber_form:
+    number:
+    - type: from_text
+      # entity: number
+
+  bid_form:
+    bid:
+    - type: from_text
+      entity: bid
+
+  booktable_form:
+    rname:
+    - type: from_entity
+      entity: rname
+    btdate:
+    - type: from_entity
+      entity: btdate
+    bttime:
+    - type: from_text 
+    # - type: from_intent
+    #   value: A
+    #   intent: bttime1  
+    #           bttime3  
+    noofpeople:
+    - type: from_text
+      # entity: noofpeople  
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+  
