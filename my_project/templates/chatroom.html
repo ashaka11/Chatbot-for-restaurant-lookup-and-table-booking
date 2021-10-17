@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="chatroom.css">
+</head>
+<body>
+  <div class="chat-container"></div>
+
+  <script src="chatroom.js"></script>
+  <script type="text/javascript">
+    var chatroom = new window.Chatroom({
+      host: "http://localhost:5005",
+      title: "RestroBot",
+      container: document.querySelector(".chat-container"),
+      welcomeMessage: "Enter hello to start chat"
+    });
+    chatroom.openChat();
+  </script>
+</body>
